@@ -1,18 +1,18 @@
-package TCP;
+package UDP;
 
 import java.io.Serializable;
 
 public class Customer implements Serializable {
-    private int id;
+    private String id;
     private String code;
     private String name;
     private String dayOfBirth;
     private String userName;
 
-    private static final long serialVersionUID = 20170711;
+    private static final long serialVersionUID = 20151107;
 
 
-    public Customer(int id, String code, String name, String dayOfBirth, String userName) {
+    public Customer(String id, String code, String name, String dayOfBirth, String userName) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -20,11 +20,11 @@ public class Customer implements Serializable {
         this.userName = userName;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -77,13 +77,12 @@ public class Customer implements Serializable {
 
     }
     public void normalizeDate(){
-        if (this.dayOfBirth.charAt(1) == '-') {
-            this.dayOfBirth = "0" + this.dayOfBirth;
+        if(Character.toString(this.dayOfBirth.charAt(1)).equals("-")){
+            this.dayOfBirth = "0"+ this.dayOfBirth;
         }
-        if (this.dayOfBirth.charAt(4) == '-') {
-            this.dayOfBirth = this.dayOfBirth.substring(0, 3) + "0" + this.dayOfBirth.substring(3);
+        if(Character.toString(this.dayOfBirth.charAt(4)).equals("-")){
+            this.dayOfBirth = this.dayOfBirth.substring(0,3)+"0"+this.dayOfBirth.substring(3);
         }
-
         String[] res =this.dayOfBirth.split("-");
         this.dayOfBirth = res[1]+"/"+res[0]+"/"+res[2];
     }
